@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id 'maven-publish'
 }
 
 android {
@@ -31,6 +32,24 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) { // The problem is here!
+            groupId = 'com.github.VineshChauhan24' // Important: Set your group ID
+            artifactId = 'FFMPEG_LibAndroid' // Important: Set your artifact ID
+            version = 'v1.0.0' // Important: Set your version
+
+            // Component to publish (very important!)
+//            from components.java // Or components.web, or whatever your component is
+
+            // Optional: Customize the POM
+            pom {
+                // ... pom customizations ...
+            }
+        }
     }
 }
 
